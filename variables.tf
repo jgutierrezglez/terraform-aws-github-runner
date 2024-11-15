@@ -61,7 +61,7 @@ variable "runner_boot_time_in_minutes" {
 variable "runner_disable_default_labels" {
   description = "Disable default labels for the runners (os, architecture and `self-hosted`). If enabled, the runner will only have the extra labels provided in `runner_extra_labels`."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "runner_extra_labels" {
