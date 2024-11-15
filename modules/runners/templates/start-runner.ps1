@@ -51,9 +51,6 @@ Write-Host  "Retrieved $ssm_config_path/enable_cloudwatch parameter - ($enable_c
 $agent_mode=$parameters.where( {$_.Name -eq "$ssm_config_path/agent_mode"}).value
 Write-Host  "Retrieved $ssm_config_path/agent_mode parameter - ($agent_mode)"
 
-$disable_default_labels=$parameters.where( {$_.Name -eq "$ssm_config_path/disable_default_labels"}).value
-Write-Host  "Retrieved $ssm_config_path/disable_default_labels parameter - ($disable_default_labels)"
-
 $enable_jit_config=$parameters.where( {$_.Name -eq "$ssm_config_path/enable_jit_config"}).value
 Write-Host  "Retrieved $ssm_config_path/enable_jit_config parameter - ($enable_jit_config)"
 
@@ -137,14 +134,8 @@ if ($agent_mode -eq "ephemeral") {
         Invoke-Expression ".\run.cmd --jitconfig $${config}"
     }
     else {
-        if ($disable_default_labels -eq "true") {
-          Write-Host "Starting without jit config and without default labels"
-          Invoke-Expression ".\run.cmd --no-default-labels"
-        }
-        else {
-          Write-Host "Starting without jit config and with default labels"
-          Invoke-Expression ".\run.cmd"
-        }
+        Write-Host "Starting without jit config"
+        Invoke-Expression ".\run.cmd"
     }
     Write-Host "Runner has finished"
 
