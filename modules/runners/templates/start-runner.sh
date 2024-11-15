@@ -224,7 +224,7 @@ if [[ "$enable_jit_config" == "false" || $agent_mode != "ephemeral" ]]; then
   else
       extra_flags=""
   fi
-  sudo --preserve-env=RUNNER_ALLOW_RUNASROOT -u "$run_as" -- ./config.sh $${extra_flags} --unattended --name "$runner_name_prefix$instance_id" --work "_work" $${config}
+  sudo --preserve-env=RUNNER_ALLOW_RUNASROOT -u "$run_as" -- ./config.sh ${extra_flags} --unattended --name "$runner_name_prefix$instance_id" --work "_work" $${config}
 fi
 
 create_xray_success_segment "$SEGMENT"
